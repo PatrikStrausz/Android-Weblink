@@ -38,6 +38,9 @@ public class WeblinkDetailActivity extends AppCompatActivity {
     public void save(View view) {
         String text = editText.getText().toString();
         weblink.setTitle(text);
+        Intent intent = new Intent();
+        intent.putExtra(WEBLINK_TAG,weblink);
+        setResult(RESULT_OK, intent);
         finish();
 
     }

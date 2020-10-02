@@ -51,7 +51,8 @@ public class MainActivity extends AppCompatActivity implements OnWeblinkListener
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CODE) {
             if (resultCode == RESULT_OK) {
-                Log.d("INT", data.toString());
+               Weblink weblink = (Weblink) data.getSerializableExtra(WeblinkDetailActivity.WEBLINK_TAG);
+               Toast.makeText(this, "new weblink "+weblink.getTitle(), Toast.LENGTH_SHORT).show();
             }
         }
 
