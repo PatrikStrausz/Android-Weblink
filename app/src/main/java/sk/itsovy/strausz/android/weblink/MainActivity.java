@@ -1,5 +1,6 @@
 package sk.itsovy.strausz.android.weblink;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,9 +9,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements OnWeblinkListener{
+
+    private static final int CODE = 69420;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,17 @@ public class MainActivity extends AppCompatActivity implements OnWeblinkListener
 
         Intent intent = new Intent(this, WeblinkDetailActivity.class);
         intent.putExtra(WeblinkDetailActivity.WEBLINK_TAG,  weblink);
-        startActivity(intent);
+        startActivityForResult(intent,CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CODE) {
+            if (resultCode == RESULT_OK) {
+                Log.d("INT", data.toString());
+            }
+        }
+
     }
 }
