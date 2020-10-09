@@ -48,6 +48,31 @@ public class WeblinksAdapter extends RecyclerView.Adapter<WeblinksAdapter.Weblin
        return weblinks.size();
     }
 
+
+
+    public void update(Weblink weblink) {
+
+        for (int i = 0; i <weblinks.size() ; i++) {
+            if(weblinks.get(i).getUuid().equals(weblink.getUuid())){
+                weblinks.set(i, weblink);
+                notifyItemChanged(i);
+                return;
+
+            }
+
+                weblinks.add(0,weblink);
+            notifyItemInserted(0);
+
+
+        }
+    }
+
+    public void remove(int position) {
+
+        weblinks.remove(position);
+        notifyItemRemoved(position);
+    }
+
     public static class WeblinksViewHolder extends RecyclerView.ViewHolder{
         private TextView textView;
         private RatingBar ratingBar;

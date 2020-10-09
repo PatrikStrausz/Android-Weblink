@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Weblink</string>
     <string name="save">Save</string>
+    <string name="add">Add</string>
 </resources>

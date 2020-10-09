@@ -1,6 +1,8 @@
 package sk.itsovy.strausz.android.weblink;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,12 +22,20 @@ public class WeblinkDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weblink_detail);
 
-
-        editText = findViewById(R.id.weblinkEditText);
-
-        textView = findViewById(R.id.weblinkTextView);
+        Toolbar toolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
+        if(intent.hasExtra(WEBLINK_TAG)) {
+            editText = findViewById(R.id.weblinkEditText);
+            textView = findViewById(R.id.weblinkTextView);
+        } else{
+            textView.findViewById(R.id.weblinkTextView);
+            textView.setText("Add");
+        }
+
 
         weblink = (Weblink) intent.getSerializableExtra(WEBLINK_TAG);
 
